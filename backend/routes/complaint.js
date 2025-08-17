@@ -25,7 +25,6 @@ router.get('/pending', protect, getPending);
 router.delete('/:id', protect, deletePending);
 
 router.patch('/:id/assign', protect, admin, assignStaff);
-router.patch('/:id/resolve', protect, submitResolution);
 router.patch('/:id/approve', protect, admin, approveResolution);
 
 router.get('/resolved', protect, getResolved);
