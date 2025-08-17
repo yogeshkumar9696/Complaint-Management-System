@@ -13,6 +13,7 @@ import path from 'path';
 dotenv.config();
 
 // 2. Initialize app
+const app = express();
 app.use(cors({
   origin: (origin, callback) => {
     const allowed = [process.env.CLIENT_URL, "http://localhost:5173"];
