@@ -8,6 +8,7 @@ import complaintRoutes from './routes/complaint.js';
 import adminRoutes from './routes/admin.js';
 import staffRoutes from './routes/staff.js';
 import path from 'path';
+import { fileURLToPath } from "url";
 
 // 1. Load environment
 dotenv.config();
@@ -42,10 +43,12 @@ app.use('/api/staff', staffRoutes);
 
 // 5. Start server
 const PORT = process.env.PORT || 3000;
-const __dirname= path.resolve();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 if(process.env.NODE_ENV==="production"){
-  app.use(express.static(path.join(__dirname,"../frontend/dist")));
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
   app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
