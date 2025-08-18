@@ -1,11 +1,16 @@
 {
   "name": "college-complaint-portal",
   "version": "1.0.0",
-  "type": "module",
-  "engines": { "node": "20.x" },
-  "scripts": {
-    "build": "npm ci && npm --prefix frontend ci && npm --prefix frontend run build && npm --prefix backend ci",
-    "start": "node backend/index.js",
-    "dev": "npm --prefix backend run dev"
-  }
+  "description": "",
+  "main": "index.js",
+  
+   "scripts": {
+    "start": "cd backend && node index.js",
+    "build": "npm install && cd frontend && npm install && npm run build && cd ../backend && npm install",
+    "dev": "cd backend && nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
 }
