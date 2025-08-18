@@ -8,7 +8,6 @@ import complaintRoutes from './routes/complaint.js';
 import adminRoutes from './routes/admin.js';
 import staffRoutes from './routes/staff.js';
 import path from 'path';
-import { fileURLToPath } from "url";
 
 // 1. Load environment
 dotenv.config();
@@ -16,14 +15,7 @@ dotenv.config();
 // 2. Initialize app
 const app = express();
 app.use(cors({
-  origin: (origin, callback) => {
-    const allowed = [process.env.CLIENT_URL, "http://localhost:5173"];
-    if (!origin || allowed.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: 'http://localhost:5173',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -43,16 +35,14 @@ app.use('/api/staff', staffRoutes);
 
 // 5. Start server
 const PORT = process.env.PORT || 3000;
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname= path.resolve();
 
 if(process.env.NODE_ENV==="production"){
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.use(express.static(path.join(__dirname,"../frontend/dist")));
 
-  app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-  });
+  app.get("*",(req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend","dist","index.html"));
+  })
 }
 
 app.listen(PORT,() => {
