@@ -7,18 +7,29 @@ import cloudinary from '../config/cloudinary.js';
 export const addStaff = async (req, res) => {
   try {
     const { name, email, phone, department, password } = req.body;
+
+    // hash password manually
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
     
     const staff = await Staff.create({
       name,
       email,
       phone,
       department,
-      password
+      password: hashedPassword
     });
 
     res.status(201).json({
       success: true,
-      staff
+      staff: {
+        id: staff._id,
+        name: staff.name,
+        email: staff.email,
+        phone: staff.phone,
+        department: staff.department,
+        isActive: staff.isActive
+      }
     });
 
   } catch (err) {

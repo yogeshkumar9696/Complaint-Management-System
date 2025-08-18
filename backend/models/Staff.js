@@ -29,19 +29,5 @@ const staffSchema = new mongoose.Schema({
   activeComplaintCount: { type: Number, default: 0 }
 }, { timestamps: true });
 
-// Password encryption before saving
-staffSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 12);
-  next();
-});
-
-// Instance method to check password
-staffSchema.methods.correctPassword = async function(
-  candidatePassword,
-  userPassword
-) {
-  return await bcrypt.compare(candidatePassword, userPassword);
-};
 
 export default mongoose.model('Staff', staffSchema);
