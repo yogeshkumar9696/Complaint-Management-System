@@ -157,57 +157,64 @@ const AdminViewStaff = () => {
         {/* Table */}
         {!loading && filteredStaff.length > 0 && (
           <div className="bg-white rounded-xl shadow overflow-hidden">
-            <table className="min-w-full">
-              <thead>
-                <tr className="bg-gray-100 text-left font-semibold text-gray-700">
-                  <th className="px-6 py-3">S.No</th>
-                  <th className="px-6 py-3">Name</th>
-                  <th className="px-6 py-3">Email</th>
-                  <th className="px-6 py-3">Phone</th>
-                  <th className="px-6 py-3">Department</th>
-                  <th className="px-6 py-3">Status</th>
-                  <th className="px-6 py-3">Active Complaints</th>
-                  <th className="px-6 py-3">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredStaff.map((staff, index) => (
-                  <tr key={staff._id} className="border-t border-gray-200">
-                    <td className="px-6 py-4">{index + 1}</td>
-                    <td className="px-6 py-4">{staff.name}</td>
-                    <td className="px-6 py-4">{staff.email}</td>
-                    <td className="px-6 py-4">{staff.phone}</td>
-                    <td className="px-6 py-4">{staff.department}</td>
-                    <td className="px-6 py-4">
-                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        staff.isActive 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-red-100 text-red-800'
-                      }`}>
-                        {staff.isActive ? 'Active' : 'Inactive'}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      {staff.activeComplaintCount}
-                    </td>
-                    <td className="px-6 py-4">
-                      <button
-                        onClick={() => setToggleId(staff._id)}
-                        className={`px-3 py-1 rounded-lg text-sm font-medium transition cursor-pointer ${
-                          staff.isActive
-                            ? 'bg-red-100 text-red-600 hover:bg-red-200'
-                            : 'bg-green-100 text-green-600 hover:bg-green-200'
-                        }`}
-                      >
-                        {staff.isActive ? 'Deactivate' : 'Activate'}
-                      </button>
-                    </td>
+            <div className="overflow-x-auto"> {/* 👈 Added wrapper for responsiveness */}
+              <table className="min-w-full text-sm md:text-base"> {/* 👈 Text adjusts on screen size */}
+                <thead>
+                  <tr className="bg-gray-100 text-left font-semibold text-gray-700">
+                    <th className="px-4 md:px-6 py-3">S.No</th>
+                    <th className="px-4 md:px-6 py-3">Name</th>
+                    <th className="px-4 md:px-6 py-3">Email</th>
+                    <th className="px-4 md:px-6 py-3">Phone</th>
+                    <th className="px-4 md:px-6 py-3">Department</th>
+                    <th className="px-4 md:px-6 py-3">Status</th>
+                    <th className="px-4 md:px-6 py-3">Active Complaints</th>
+                    <th className="px-4 md:px-6 py-3">Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {filteredStaff.map((staff, index) => (
+                    <tr key={staff._id} className="border-t border-gray-200">
+                      <td className="px-4 md:px-6 py-3">{index + 1}</td>
+                      <td className="px-4 md:px-6 py-3">{staff.name}</td>
+                      <td className="px-4 md:px-6 py-3 break-words max-w-[150px] md:max-w-none">
+                        {staff.email}
+                      </td>
+                      <td className="px-4 md:px-6 py-3">{staff.phone}</td>
+                      <td className="px-4 md:px-6 py-3">{staff.department}</td>
+                      <td className="px-4 md:px-6 py-3">
+                        <span
+                          className={`px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium ${
+                            staff.isActive
+                              ? 'bg-green-100 text-green-800'
+                              : 'bg-red-100 text-red-800'
+                          }`}
+                        >
+                          {staff.isActive ? 'Active' : 'Inactive'}
+                        </span>
+                      </td>
+                      <td className="px-4 md:px-6 py-3 text-center">
+                        {staff.activeComplaintCount}
+                      </td>
+                      <td className="px-4 md:px-6 py-3">
+                        <button
+                          onClick={() => setToggleId(staff._id)}
+                          className={`px-2 md:px-3 py-1 rounded-lg text-xs md:text-sm font-medium transition cursor-pointer ${
+                            staff.isActive
+                              ? 'bg-red-100 text-red-600 hover:bg-red-200'
+                              : 'bg-green-100 text-green-600 hover:bg-green-200'
+                          }`}
+                        >
+                          {staff.isActive ? 'Deactivate' : 'Activate'}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
+
 
         {/* Empty state */}
         {!loading && filteredStaff.length === 0 && (
