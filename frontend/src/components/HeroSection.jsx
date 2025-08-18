@@ -27,7 +27,7 @@ const HeroSection = () => {
         <div className="md:w-1/2 flex justify-center">
           <div className="w-full h-96 bg-gray-200 rounded-xl overflow-hidden flex items-center justify-center">
             <img 
-              src="./public/home.png" 
+              src="https://res.cloudinary.com/dk4pvyohm/image/upload/v1755544733/home_qzeegx.png" 
               alt="CampusCare Portal" 
               className="object-cover w-full h-full"
             />
