@@ -2,8 +2,8 @@
   "name": "college-complaint-portal",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  
+  "engines": {
+    "node": "20.x"},
    "scripts": {
     "start": "cd backend && node index.js",
     "build": "npm install && cd frontend && npm install && npm run build && cd ../backend && npm install",
@@ -12,5 +12,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "module"
 }
