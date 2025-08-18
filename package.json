@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  
-   "scripts": {
+  "type": "module",
+  "scripts": {
     "start": "cd backend && node index.js",
     "build": "npm install && cd frontend && npm install && npm run build && cd ../backend && npm install",
     "dev": "cd backend && nodemon index.js"
