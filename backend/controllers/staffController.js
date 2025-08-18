@@ -2,6 +2,7 @@ import Staff from '../models/Staff.js';
 import Complaint from '../models/Complaint.js';
 import multer from 'multer';
 import cloudinary from '../config/cloudinary.js';
+import bcrypt from 'bcryptjs';
 
 // Add new staff member
 export const addStaff = async (req, res) => {
