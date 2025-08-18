@@ -15,7 +15,10 @@ dotenv.config();
 // 2. Initialize app
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:5173',
+ origin: [
+    "http://localhost:5173",
+    "https://complaint-management-system-alpha.vercel.app"
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -32,6 +35,10 @@ app.use('/api', protectedRoutes);
 app.use('/api/complaints', complaintRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/staff', staffRoutes);
+
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to the College Complaint Portal API' });
+});
 
 // 5. Start server
 const PORT = process.env.PORT || 3000;
