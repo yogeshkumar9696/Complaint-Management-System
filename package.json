@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "build":"npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "npm start --prefix backend"
+  
+   "scripts": {
+    "start": "cd backend && node index.js",
+    "build": "npm install && cd frontend && npm install && npm run build && cd ../backend && npm install",
+    "dev": "cd backend && nodemon index.js"
   },
   "keywords": [],
   "author": "",
